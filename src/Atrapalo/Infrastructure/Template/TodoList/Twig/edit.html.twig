@@ -1,0 +1,34 @@
+{% extends 'Common/Twig/base.html.twig' %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Edit Todo</h4></div>
+    <div class="panel-body">
+        {% include 'Common/Twig/flash_message.html.twig' with
+            {'code': code | default(null), 'messageOk': 'Todo updated'}%}
+        <form class="form" action="/todolist" method="POST">
+            <input type="hidden" name="id" value="{{ todo.id }}" /><br>
+            <input type="hidden" name="_method" value="put" />
+            <div class="form-group">
+                <label class="control-label"> Title:</label>
+                <input class="form-control input-lg" type="text" name="title" value="{{ todo.title }}"/><br>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description:</label>
+                <input class="form-control input-lg" type="text" name="description" value="{{ todo.description }}"/><br>
+            </div>
+            <div class="checkbox">
+                <label>
+                  <input type="checkbox" type="checkbox" name="done" value="1" {%if todo.done %}checked{% endif %}>
+                  Done?
+                </label>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Edit</button>
+        </form>
+    </div>
+</div>
+<a class="lead" href="/todolist">Return to Todo List</a>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    <script data-main="/app/src/todoList/js/page/edit.js" src="/app/vendor/requirejs/require.js"></script>
+{% endblock %}

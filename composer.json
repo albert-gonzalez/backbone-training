@@ -1,0 +1,19 @@
+{
+    "name": "atrapalo/backbone-require-training",
+    "description": "Backbone / Marionette / RequireJS Training",
+    "require": {
+        "silex/silex": "~1.2",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "doctrine/dbal": "2.2.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vacilone",
+            "email": "albert.glez.mld@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {"Atrapalo": "src/"}
+    }
+}

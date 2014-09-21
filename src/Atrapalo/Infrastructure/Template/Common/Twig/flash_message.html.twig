@@ -1,0 +1,5 @@
+{% if code is not null and code == 0%}
+    <div class="alert alert-success">{{ messageOk | default('Everything ok!')}}</div>
+{% elseif code is not null and code == -1 %}
+    <div class="alert alert-danger">{{ messageError | default('Oops! Something went wrong') }}</div>
+{% endif %}
