@@ -10,6 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 $app = new Application();
 $app['debug'] = true;
 
+$app->before(function (Request $request) {
+    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+    }
+});
+
 // Providers
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -39,8 +46,8 @@ $app->get('/todolist/{id}', "todolist.controller:editHtmlAction");
 $app->post('api/todolist', "todolist.controller:insertJsonAction");
 $app->post('/todolist', "todolist.controller:insertHtmlAction");
 
-$app->put('api/todolist', "todolist.controller:updateJsonAction");
-$app->put('/todolist', "todolist.controller:updateHtmlAction");
+$app->put('api/todolist/{id}', "todolist.controller:updateJsonAction");
+$app->put('/todolist/{id}', "todolist.controller:updateHtmlAction");
 
 
 Request::enableHttpMethodParameterOverride();
