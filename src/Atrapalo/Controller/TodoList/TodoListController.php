@@ -59,57 +59,92 @@ class TodoListController
 
     public function insertJsonAction($request)
     {
-        return new JsonResponse(['code' => $this->persistAction($request)]);
+        list($code, $message) = $this->persistAction($request);
+        return new JsonResponse(['code' => $code, 'message' => $message]);
     }
 
     public function insertHtmlAction(Request $request)
     {
-        $code = $this->persistAction($request);
+        list($code, $message) = $this->persistAction($request);
         $todoList = $this->indexAction(TodoRepository::ENTITY);
 
         return $this->templateEngine->render(
             'TodoList/Twig/index.html.twig',
-            ['todoList' => $todoList, 'code' => $code]
+            ['todoList' => $todoList, 'code' => $code, 'message' => $message]
         );
     }
 
     public function updateJsonAction(Request $request)
     {
-        return new JsonResponse(['code' => $this->persistAction($request)]);
+        list($code, $message) = $this->persistAction($request);
+        return new JsonResponse(['code' => $code, 'message' => $message]);
     }
 
     public function updateHtmlAction(Request $request)
     {
-        $code = $this->persistAction($request);
+        list($code, $message) = $this->persistAction($request);
         $todo = $this->
             editAction($request->request->get('id'), TodoRepository::ENTITY);
 
         return $this->templateEngine->render(
-            'TodoList/Twig/edit.html.twig', ['todo' => $todo, 'code' => $code]
+            'TodoList/Twig/edit.html.twig', ['todo' => $todo, 'code' => $code, 'message' => $message]
         );
     }
 
     private function persistAction(Request $request)
     {
         $returnCode = 0;
+        $message = 'Todo Created';
         try {
             $todo = $this->requestToTodoEntity($request);
             $this->todoRepository->persist($todo);
         } catch (Exception $e) {
             $returnCode = -1;
+            $message = 'Error!';
         }
 
-        return $returnCode;
+        return [$returnCode, $message];
     }
 
     private function requestToTodoEntity(Request $request)
     {
         $todo = new Todo();
-        $todo->setId($request->request->get('id'));
-        $todo->setTitle($request->request->get('title'));
-        $todo->setDescription($request->request->get('description'));
-        $todo->setDone($request->request->get('done', 0));
+        $todo->setId($request->get('id'));
+        $todo->setTitle($request->get('title'));
+        $todo->setDescription($request->get('description'));
+        $todo->setDone($request->get('done', 0));
 
         return $todo;
+    }
+
+    public function deleteJsonAction(Request $request)
+    {
+        return new JsonResponse(['code' => $this->deleteAction($request)]);
+    }
+
+    public function deleteHtmlAction(Request $request)
+    {
+        list($code, $message) = $this->deleteAction($request);
+        $todoList = $this->indexAction(TodoRepository::ENTITY);
+
+        return $this->templateEngine->render(
+            'TodoList/Twig/index.html.twig',
+            ['todoList' => $todoList, 'code' => $code, 'message' => $message]
+        );
+    }
+
+    private function deleteAction(Request $request) {
+        $returnCode = 0;
+        $message = 'Todo Deleted';
+        try {
+            $todo = $this->requestToTodoEntity($request);
+            $this->todoRepository->delete($todo);
+
+        } catch (Exception $e) {
+            $returnCode = -1;
+            $message = 'Error!';
+        }
+
+        return [$returnCode, $message];
     }
 }

@@ -1,7 +1,7 @@
 define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
     'use strict';
     var EditView = Backbone.View.extend({
-        el: $("#todoEdit"),
+        el: $("#editTodo"),
 
         initialize: function () {
             this.todo = new Todo({id: this.$('form input[name=id]').val()});
@@ -19,16 +19,16 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
         },
 
         addListeners: function () {
-            this.listenTo(this.todo, 'sync', function () {
+            this.listenTo(this.todo, 'sync', function (data) {
                 this.$('#message').hide();
                 this.$('#message').removeClass('alert-danger').addClass('alert-success').
-                        html('Todo updated!').show('fadein');
+                        html(data.get('message')).show('fadein');
             });
 
-            this.listenTo(this.todo, 'error', function () {
+            this.listenTo(this.todo, 'error', function (data) {
                 this.$('#message').hide();
                 this.$('#message').removeClass('alert-success').addClass('alert-danger').
-                        html('Oops! Something went wrong!').show('fadein');
+                        html(data.get('message')).show('fadein');
             });
         },
 

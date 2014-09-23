@@ -12,4 +12,6 @@ interface TodoRepository
     public function find($id, $responseType = self::ENTITY);
 
     public function persist($todo);
+
+    public function delete($todo);
 }

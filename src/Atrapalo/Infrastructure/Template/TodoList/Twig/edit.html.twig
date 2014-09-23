@@ -2,9 +2,9 @@
 {% block content %}
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Edit Todo</h4></div>
-    <div id="todoEdit" class="panel-body">
+    <div id="editTodo" class="panel-body">
         {% include 'Common/Twig/flash_message.html.twig' with
-            {'code': code | default(null), 'messageOk': 'Todo updated'}%}
+            {'code': code | default(null), 'message': message | default(null)} %}
         <form class="form" action="/todolist/{{ todo.id }}" method="POST">
             <input type="hidden" name="id" value="{{ todo.id }}" /><br>
             <input type="hidden" name="_method" value="put" />

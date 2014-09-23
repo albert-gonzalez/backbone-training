@@ -98,5 +98,8 @@ class TodoRepository implements BaseRepository
         return $todoEntity;
     }
 
-//put your code here
+    public function delete($todo)
+    {
+        $this->db->delete('todo', ['id' => $todo->getId()]);
+    }
 }

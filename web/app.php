@@ -51,6 +51,9 @@ $app->post('/todolist', "todolist.controller:insertHtmlAction");
 $app->put('api/todolist/{id}', "todolist.controller:updateJsonAction");
 $app->put('/todolist/{id}', "todolist.controller:updateHtmlAction");
 
+$app->delete('api/todolist/{id}', "todolist.controller:deleteJsonAction");
+$app->delete('/todolist/{id}', "todolist.controller:deleteHtmlAction");
+
 Request::enableHttpMethodParameterOverride();
 
 return $app;

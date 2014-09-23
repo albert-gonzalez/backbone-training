@@ -1,11 +1,11 @@
 {% extends 'Common/Twig/base.html.twig' %}
 {% block content %}
+{% include 'Common/Twig/flash_message.html.twig' with
+{'code': code | default(null), 'message': message | default(null)}%}
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Add Todo</h4></div>
     <div class="panel-body">
-        {% include 'Common/Twig/flash_message.html.twig' with
-            {'code': code | default(null), 'messageOk': 'Todo created'}%}
-        <form class="form-inline text-center" action="/todolist" method="POST">
+        <form id="createTodo" class="form-inline text-center" action="/todolist" method="POST">
             <div class="form-group">
                 <input class="form-control input-lg" type="text" name="title" placeholder="Title"/>
             </div>
@@ -19,7 +19,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Todo List</h4></div>
     <div class="panel-body">
-        <ul>
+        <ul id="todoList">
             {% for todo in todoList %}
             <li class="lead" title="{{ todo.description }} | Created at {{ todo.creationDate | date('Y-m-d H:i:s')}}">
                     {% if todo.done %}
@@ -27,7 +27,15 @@
                     {% else %}
                         {{ todo.title|e }}
                     {% endif %}
-                    <a href="/todolist/{{ todo.id }}">Edit</a>
+                    <span class="pull-right">
+                    <a id="editTodo" class="btn btn-success btn-sm" href="/todolist/{{ todo.id }}">
+                        Edit
+                    </a> |
+                    <form id="deleteTodo" class="form-inline inline-block" action="/todolist/{{ todo.id }}" method="POST">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
+                    </span>
                 </li>
             {% endfor %}
         </ul>
@@ -36,5 +44,5 @@
 {% endblock %}
 {% block javascript %}
     {{ parent() }}
-    <script data-main="app/src/todoList/js/page/index.js" src="/app/vendor/requirejs/require.js"></script>
+    <script data-main="/app/src/todoList/js/page/index.js" src="/app/vendor/requirejs/require.js"></script>
 {% endblock %}
