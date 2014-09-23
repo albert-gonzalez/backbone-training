@@ -2,82 +2,97 @@
 
 namespace Atrapalo\Domain\TodoList;
 
-class Todo {
-    
+class Todo
+{
     /**
-     * @var int 
+     * @var int
      */
     private $id;
-    
+
     /**
-     * @var string 
+     * @var string
      */
     private $title;
-    
+
     /**
      * @var boolean
      */
     private $done;
-    
+
     /**
-     * @var string 
+     * @var string
      */
     private $description;
-    
+
     /**
-     * @var DateTime 
+     * @var DateTime
      */
     private $creationDate;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->creationDate = new \DateTime();
         $this->done = false;
     }
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
-    public function getDone() {
+    public function getDone()
+    {
         return $this->done;
     }
 
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
-    public function getCreationDate() {
+    public function getCreationDate()
+    {
         return $this->creationDate;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
+
         return $this;
     }
 
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
+
         return $this;
     }
 
-    public function setDone($done) {
+    public function setDone($done)
+    {
         $this->done = $done;
+
         return $this;
     }
 
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
+
         return $this;
     }
 
-    public function setCreationDate(\DateTime $creationDate) {
+    public function setCreationDate(\DateTime $creationDate)
+    {
         $this->creationDate = $creationDate;
+
         return $this;
     }
-
 
 }

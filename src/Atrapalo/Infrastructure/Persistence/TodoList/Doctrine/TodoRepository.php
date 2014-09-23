@@ -6,11 +6,12 @@ use Atrapalo\Domain\TodoList\TodoRepository as BaseRepository;
 use Atrapalo\Domain\TodoList\Todo;
 use Doctrine\DBAL\Connection;
 
-class TodoRepository implements BaseRepository {
-    
+class TodoRepository implements BaseRepository
+{
     private $db;
-    
-    public function __construct(Connection $db) {
+
+    public function __construct(Connection $db)
+    {
         $this->db = $db;
     }
 
@@ -20,35 +21,35 @@ class TodoRepository implements BaseRepository {
         if ($responseType === self::ENTITY) {
             $todoList = $this->transformToEntityArray($todoList);
         }
-        
+
         return $todoList;
     }
-    
+
     private function transformToEntityArray($todoList)
     {
         $todoEntityList = [];
         foreach ($todoList as $todo) {
             $todoEntityList[] = $this->createEntity($todo);
         }
-        
+
         return $todoList;
     }
-    
+
     public function find($id, $responseType = self::ENTITY)
     {
-        $todoList = 
+        $todoList =
             $this->db->fetchAll('SELECT * FROM todo WHERE id = ?', [$id]);
-        
+
         if (count($todoList) === 0) {
             return null;
         }
-        
+
         $todo = $todoList[0];
-        
+
         if ($responseType === self::ENTITY) {
             $todo = $this->createEntity($todo);
         }
-        
+
         return $todo;
     }
 
@@ -60,12 +61,12 @@ class TodoRepository implements BaseRepository {
             $this->insert($todo);
         }
     }
-    
+
     private function insert($todo)
     {
         $this->db->insert('todo', $this->getDataArray($todo));
     }
-    
+
     private function update($todo)
     {
         $this->db->update(
@@ -74,7 +75,7 @@ class TodoRepository implements BaseRepository {
             ['id' => $todo->getId()]
         );
     }
-    
+
     private function getDataArray($todo)
     {
         return [
@@ -84,7 +85,7 @@ class TodoRepository implements BaseRepository {
             'creationDate' => $todo->getCreationDate()->format('c')
         ];
     }
-    
+
     private function createEntity($todo)
     {
         $todoEntity = new Todo();
@@ -93,7 +94,7 @@ class TodoRepository implements BaseRepository {
         $todoEntity->setDescription($todo['description']);
         $todoEntity->setDone($todo['done']);
         $todoEntity->setCreationDate(new \DateTime($todo['creationDate']));
-        
+
         return $todoEntity;
     }
 

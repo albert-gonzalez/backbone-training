@@ -30,13 +30,15 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // Services
-$app['todo.repository'] = $app->share(function() use ($app) {
+$app['todo.repository'] = $app->share(function () use ($app) {
     return new TodoRepository($app['db']);
 });
-$app['todolist.controller'] = $app->share(function() use ($app) {
+$app['todolist.controller'] = $app->share(function () use ($app) {
     return new TodoListController($app['todo.repository'], $app['twig']);
 });
 
+
+// Routes
 $app->get('api/todolist', "todolist.controller:indexJsonAction");
 $app->get('/todolist', "todolist.controller:indexHtmlAction");
 
@@ -49,8 +51,6 @@ $app->post('/todolist', "todolist.controller:insertHtmlAction");
 $app->put('api/todolist/{id}', "todolist.controller:updateJsonAction");
 $app->put('/todolist/{id}', "todolist.controller:updateHtmlAction");
 
-
 Request::enableHttpMethodParameterOverride();
 
 return $app;
-
