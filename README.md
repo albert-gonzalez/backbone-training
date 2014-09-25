@@ -59,8 +59,8 @@ Atrapalo backbonejs with requirejs training
   * Define the model property with the Todo model
   * Create an instance of a collection passing a array of Todo models, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.view.js
-  * The tag name property is 'li'
-  * Define a the template property with a function that returns the this.model Title
+  * Define the tagName property with 'li'
+  * Define the template property with a function that returns the this.model Title
   * On render property, call the template function and assign the result to the view element.
   * Create an instance of a view passing a Todo model, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.list.view.js
