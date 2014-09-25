@@ -57,10 +57,13 @@ class TodoListController
         return $this->todoRepository->find($id, $responseType);
     }
 
-    public function insertJsonAction($request)
+    public function insertJsonAction(Request $request)
     {
-        list($code, $message) = $this->persistAction($request);
-        return new JsonResponse(['code' => $code, 'message' => $message]);
+        list($code, $message, $todo) = $this->persistAction($request);
+        return new JsonResponse([
+            'code' => $code, 'message' => $message, 'id' => $todo->getId(),
+            'creationDate' => $todo->getCreationDate()->format('c')
+        ]);
     }
 
     public function insertHtmlAction(Request $request)
@@ -103,7 +106,7 @@ class TodoListController
             $message = 'Error!';
         }
 
-        return [$returnCode, $message];
+        return [$returnCode, $message, $todo];
     }
 
     private function requestToTodoEntity(Request $request)

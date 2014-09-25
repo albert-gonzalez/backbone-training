@@ -65,6 +65,7 @@ class TodoRepository implements BaseRepository
     private function insert($todo)
     {
         $this->db->insert('todo', $this->getDataArray($todo));
+        $todo->setId($this->db->lastInsertId());
     }
 
     private function update($todo)

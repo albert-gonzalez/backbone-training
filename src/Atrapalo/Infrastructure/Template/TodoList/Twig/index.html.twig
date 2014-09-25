@@ -4,8 +4,8 @@
 {'code': code | default(null), 'message': message | default(null)}%}
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Add Todo</h4></div>
-    <div class="panel-body">
-        <form id="createTodo" class="form-inline text-center" action="/todolist" method="POST">
+    <div class="panel-body" id="createTodo">
+        <form class="form-inline text-center" action="/todolist" method="POST">
             <div class="form-group">
                 <input class="form-control input-lg" type="text" name="title" placeholder="Title"/>
             </div>
@@ -21,21 +21,23 @@
     <div class="panel-body">
         <ul id="todoList">
             {% for todo in todoList %}
-            <li class="lead" title="{{ todo.description }} | Created at {{ todo.creationDate | date('Y-m-d H:i:s')}}">
-                    {% if todo.done %}
-                    <del>{{ todo.title|e }}</del>
-                    {% else %}
-                        {{ todo.title|e }}
-                    {% endif %}
-                    <span class="pull-right">
-                    <a id="editTodo" class="btn btn-success btn-sm" href="/todolist/{{ todo.id }}">
-                        Edit
-                    </a> |
-                    <form id="deleteTodo" class="form-inline inline-block" action="/todolist/{{ todo.id }}" method="POST">
-                        <input type="hidden" name="_method" value="delete" />
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-                    </span>
+                <li>
+                    <div class="lead" title="{{ todo.description }} | Created at {{ todo.creationDate | date('Y-m-d H:i:s')}}">
+                        {% if todo.done %}
+                        <del>{{ todo.title|e }}</del>
+                        {% else %}
+                            {{ todo.title|e }}
+                        {% endif %}
+                        <span class="pull-right">
+                        <a class="btn btn-success btn-sm app-editTodo" href="/todolist/{{ todo.id }}">
+                            Edit
+                        </a> |
+                        <form class="form-inline inline-block app-deleteTodo" action="/todolist/{{ todo.id }}" method="POST">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                        </span>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
@@ -45,4 +47,24 @@
 {% block javascript %}
     {{ parent() }}
     <script data-main="/app/src/todoList/js/page/index.js" src="/app/vendor/requirejs/require.js"></script>
+
+    {# This template will be used in first exercise#}
+    <script type="text/template" id="todo-template">
+        <div class="lead" title="<%- description %> | Created at <%- creationDate %>">
+            <% if (done == 1) { %>
+            <del><%- title %></del>
+            <% } else { %>
+                <%- title %>
+            <% } %>
+            <span class="pull-right">
+            <a class="btn btn-success btn-sm app-editTodo" href="/todolist/<%- id %>">
+                Edit
+            </a> |
+            <form class="form-inline inline-block app-deleteTodo" action="/todolist/<%- id %>" method="POST">
+                <input type="hidden" name="_method" value="delete" />
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+            </form>
+            </span>
+        </div>
+    </script>
 {% endblock %}
