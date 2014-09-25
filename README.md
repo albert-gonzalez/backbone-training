@@ -30,8 +30,32 @@ Atrapalo backbonejs training
   
   `php -S localhost:8080 -t web web/index.php`
 
-* Open the url:
+* Open the url and check out everything works:
 
   `http://localhost:8080/todolist`
+  
+##Exercises
+###1. Activate backbone app on edit page
+* Uncomment line 33 on /src/Atrapalo/Infrastructure/Template/TodoList/Twig/edit.html.twig
+* See the new behaviour of the edit page
+* See the backbone app files: /web/app/src/todoList/js/page/edit.js and /web/app/src/todoList/js/view/edit.view.js
 
-
+###2. Create Todo List View
+* Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
+* Create a Backbone.Collection inside the module you have created
+  * The url is '/api/todolist' and the model of the collection is a Todo
+* Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
+* Create a Backbone.View inside the module you have created
+  * The tag name is 'li'
+  * The template is '#todo-template'
+  * On render, it pass the model to the view in json format and assign the result to the html element.
+* Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
+* Create a Backbone.View inside the module you have created
+  * The element view is #todoList
+  * Define a initialize method. This method must initialize a Todo Collection and fetch results from the server
+  * The view has to listen to add event of the collection. Every time the collection add a todo, a todo will be printed on the html. To do this, You have to create a new Model View passing the added Todo as a parameter
+* Modify /web/app/src/todoList/js/view/index.view.js
+  * Add backbone and todo.list.view as dependencies
+  * Create a Backbone.View
+  * Define a initialize method inside the view
+  * Create a new instance of TodoListView inside the initialize method
