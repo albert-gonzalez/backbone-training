@@ -53,14 +53,14 @@ Atrapalo backbonejs with requirejs training
 * Define AMD Modules
   * Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
   * Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
-  * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
+  * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection, todo.model and todo.view as dependencies
   * Modify /web/app/src/todoList/js/view/index.view.js and add backbone and todo.list.view as dependencies
 * Create a Backbone.Collection inside the module of todo.collection.js
   * Define the model property with the Todo model
   * Create an instance of a collection passing a array of Todo models, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.view.js
-  * The tag name property is 'li'
-  * Define a the template property with a function that returns the this.model Title
+  * Define the tagName property with 'li'
+  * Define the template property with a function that returns the this.model Title
   * On render property, call the template function and assign the result to the view element.
   * Create an instance of a view passing a Todo model, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.list.view.js
@@ -72,6 +72,8 @@ Atrapalo backbonejs with requirejs training
 * Create a Backbone.View inside the module of index.view.js
   * Define an initialize method inside the view
   * Create a new instance of TodoListView inside the initialize method
+* Modify page/index.js
+  * Create a new instance of index.view inside the require module
 * Modify todo.collection.js module
   * Define url property with '/api/todolist'
 * Modify todo.list.view
