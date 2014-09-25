@@ -72,6 +72,8 @@ Atrapalo backbonejs with requirejs training
 * Create a Backbone.View inside the module of index.view.js
   * Define an initialize method inside the view
   * Create a new instance of TodoListView inside the initialize method
+* Modify page/index.js
+  * Create a new instance of index.view inside the require module
 * Modify todo.collection.js module
   * Define url property with '/api/todolist'
 * Modify todo.list.view
