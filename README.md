@@ -35,12 +35,19 @@ Atrapalo backbonejs training
   `http://localhost:8080/todolist`
   
 ##Exercises
-###1. Activate backbone app on edit page
+###1. Check out BackboneJs Doc
+* http://backbonejs.org/
+
+###2. Check out Todos example
+* Todo app: http://backbonejs.org/examples/todos/index.html
+* Annotated source: http://backbonejs.org/docs/todos.html
+
+###3. Activate backbone app on edit page
 * Uncomment line 33 on /src/Atrapalo/Infrastructure/Template/TodoList/Twig/edit.html.twig
 * See the new behaviour of the edit page
 * See the backbone app files: /web/app/src/todoList/js/page/edit.js and /web/app/src/todoList/js/view/edit.view.js
 
-###2. Create Todo List View
+###4. Create Todo List View
 * Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
 * Create a Backbone.Collection inside the module you have created
   * The url is '/api/todolist' and the model of the collection is a Todo
