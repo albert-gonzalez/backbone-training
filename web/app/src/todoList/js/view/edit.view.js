@@ -1,7 +1,7 @@
 define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
     'use strict';
     var EditView = Backbone.View.extend({
-        el: $("#editTodo"),
+        el: "#editTodo",
 
         initialize: function () {
             this.todo = new Todo({id: this.$('form input[name=id]').val()});
