@@ -49,21 +49,21 @@ Atrapalo backbonejs with requirejs training
 
 ###4. Create Todo List View
 * HINT: Use Todo example of backbone doc as reference
-* Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
-* Create a Backbone.Collection inside the module you have created
+* Define AMD Modules
+  * Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
+  * Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
+  * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
+  * Modify /web/app/src/todoList/js/view/index.view.js and add backbone and todo.list.view as dependencies
+* Create a Backbone.Collection inside the module of todo.collection.js
   * The url is '/api/todolist' and the model of the collection is a Todo
-* Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
-* Create a Backbone.View inside the module you have created
+* Create a Backbone.View inside the module of todo.view.js
   * The tag name is 'li'
   * The template is '#todo-template'
   * On render, it pass the model to the underscore template in json format and assign the result to the html element.
-* Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
-* Create a Backbone.View inside the module you have created
+* Create a Backbone.View inside the module of todo.list.view.js
   * The element view is #todoList
   * Define an initialize method. This method must initialize a Todo Collection and fetch results from the server
   * The view has to listen to add event of the collection. Every time the collection add a todo, a todo will be printed on the html. To do this, You have to create a new Model View passing the added Todo as a parameter
-* Modify /web/app/src/todoList/js/view/index.view.js
-  * Add backbone and todo.list.view as dependencies
-  * Create a Backbone.View
+* Create a Backbone.View inside the module of index.view.js
   * Define an initialize method inside the view
   * Create a new instance of TodoListView inside the initialize method
