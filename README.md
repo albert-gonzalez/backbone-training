@@ -55,19 +55,19 @@ Atrapalo backbonejs with requirejs training
   * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
   * Modify /web/app/src/todoList/js/view/index.view.js and add backbone and todo.list.view as dependencies
 * Create a Backbone.Collection inside the module of todo.collection.js
-  * The model of the collection is a Todo
-  * Create an instance of a collection passing a array of Todo models, check out if it works and remove it.
+  * Define the model property with the Todo model
+  * Create an instance of a collection passing a array of Todo models, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.view.js
   * The tag name property is 'li'
   * Define a the template property with a function that returns the this.model Title
   * On render property, call the template function and assign the result to the view element.
-  * Create an instance of a view passing a Todo model, check out if it works and remove it.
+  * Create an instance of a view passing a Todo model, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.list.view.js
-  * Define an el (element) property is #todoList
+  * Define an el (element) property with #todoList
   * Define an initialize property with a method. This method must initialize a Todo Collection passing a parameter of an array of Todo Models.
-  * Create an instance of a view passing check out if it works.
+  * Create an instance of a view and check if it works.
   * The view has to listen to add event of the collection. Every time the collection add a todo, a todo will be printed on the html. To do this, You have to define a listener that create a new Model View passing the added Todo as a parameter
-  * Check out again the created instance and remove it. 
+  * Check again the created instance and remove it. 
 * Create a Backbone.View inside the module of index.view.js
   * Define an initialize method inside the view
   * Create a new instance of TodoListView inside the initialize method
@@ -75,8 +75,8 @@ Atrapalo backbonejs with requirejs training
   * Define url property with '/api/todolist'
 * Modify todo.list.view
   * Don't pass the static model array to the collection
-  * Fetch the results from the server
+  * Fetch the collection items from the server
 * Modify todo.view.js module
   * Change the template property assigning the html of the '#todo-template' element available in index.html.twig
   * Change the render method calling the underscore template method
-* Check out if everything works :)
+* Check if everything works :)
