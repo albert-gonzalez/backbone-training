@@ -65,7 +65,7 @@ Atrapalo backbonejs with requirejs training
   * Create an instance of a view passing a Todo model, check if it works and remove it.
 * Create a Backbone.View inside the module of todo.list.view.js
   * Define an el (element) property with #todoList
-  * Define an initialize property with a method. This method must initialize a Todo Collection passing a parameter of an array of Todo Models.
+  * Define an initialize property with a method. This method must initialize a Todo Collection and call the add method to add an array of Todo Models.
   * Create an instance of a view and check if it works.
   * The view has to listen to add event of the collection. Every time the collection add a todo, a todo will be printed on the html. To do this, You have to define a listener that create a new Model View passing the added Todo as a parameter
   * Check again the created instance and remove it. 
@@ -79,7 +79,7 @@ Atrapalo backbonejs with requirejs training
 * Modify todo.collection.js module
   * Define url property with '/api/todolist'
 * Modify todo.list.view
-  * Don't pass the static model array to the collection
+  * Don't add the static array to the collection
   * Fetch the collection items from the server
 
 ###6. Try Underscore Template Engine
