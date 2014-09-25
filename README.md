@@ -47,7 +47,7 @@ Atrapalo backbonejs with requirejs training
 * See the new behaviour of the edit page
 * See the backbone app files: /web/app/src/todoList/js/page/edit.js and /web/app/src/todoList/js/view/edit.view.js
 
-###4. Create Todo List View
+###4. Create Static Todo List View
 * HINT: Use Todo example of backbone doc as reference
 * Twig has no longer to print the todo list. Delete lines 23-42 of index.html.twig (for todo in todoList...)
 * Define AMD Modules
@@ -74,12 +74,17 @@ Atrapalo backbonejs with requirejs training
   * Create a new instance of TodoListView inside the initialize method
 * Modify page/index.js
   * Create a new instance of index.view inside the require module
+
+###5. Try Remote Collections
 * Modify todo.collection.js module
   * Define url property with '/api/todolist'
 * Modify todo.list.view
   * Don't pass the static model array to the collection
   * Fetch the collection items from the server
+
+###6. Try Underscore Template Engine
 * Modify todo.view.js module
   * Change the template property assigning the html of the '#todo-template' element available in index.html.twig
   * Change the render method calling the underscore template method
-* Check if everything works :)
+
+###7. Check if everything works :)
