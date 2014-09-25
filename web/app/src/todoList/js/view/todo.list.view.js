@@ -5,12 +5,9 @@ define([
         el: '#todoList',
         
         initialize: function () {
-            var todo = new Todo({title: 'Todo1'}),
-                todo2 = new Todo({title: 'Todo2'}),
-                todoArray = [todo, todo2];
             this.collection = new TodoCollection();
             this.listenTo(this.collection, 'add', this.addTodo);
-            this.collection.add(todoArray);
+            this.collection.fetch();
         },
         
         addTodo: function (todo) {
