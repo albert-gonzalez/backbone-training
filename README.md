@@ -53,7 +53,7 @@ Atrapalo backbonejs with requirejs training
 * Define AMD Modules
   * Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
   * Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
-  * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection  and todo.view as dependencies
+  * Create /web/app/src/todoList/js/view/todo.list.view.js and define an AMD module inside with backbone, todo.collection, todo.model and todo.view as dependencies
   * Modify /web/app/src/todoList/js/view/index.view.js and add backbone and todo.list.view as dependencies
 * Create a Backbone.Collection inside the module of todo.collection.js
   * Define the model property with the Todo model
