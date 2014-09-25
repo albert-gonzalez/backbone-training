@@ -49,6 +49,7 @@ Atrapalo backbonejs with requirejs training
 
 ###4. Create Todo List View
 * HINT: Use Todo example of backbone doc as reference
+* Twig has no longer to print the todo list. Delete lines 23-42 of index.html.twig (for todo in todoList...)
 * Define AMD Modules
   * Create /web/app/src/todoList/js/collection/todo.collection.js and define an AMD module inside with backbone and todo.model as dependencies
   * Create /web/app/src/todoList/js/view/todo.view.js  and define an AMD module inside with backbone and todo.model as dependencies
