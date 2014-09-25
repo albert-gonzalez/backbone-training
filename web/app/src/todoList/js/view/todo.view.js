@@ -12,4 +12,6 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
             return this;
         }
     });
+
+    return TodoView;
 });
