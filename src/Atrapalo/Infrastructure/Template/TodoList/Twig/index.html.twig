@@ -20,26 +20,6 @@
     <div class="panel-heading"><h4>Todo List</h4></div>
     <div class="panel-body">
         <ul id="todoList">
-            {% for todo in todoList %}
-                <li>
-                    <div class="lead" title="{{ todo.description }} | Created at {{ todo.creationDate | date('Y-m-d H:i:s')}}">
-                        {% if todo.done %}
-                        <del>{{ todo.title|e }}</del>
-                        {% else %}
-                            {{ todo.title|e }}
-                        {% endif %}
-                        <span class="pull-right">
-                        <a class="btn btn-success btn-sm app-editTodo" href="/todolist/{{ todo.id }}">
-                            Edit
-                        </a> |
-                        <form class="form-inline inline-block app-deleteTodo" action="/todolist/{{ todo.id }}" method="POST">
-                            <input type="hidden" name="_method" value="delete" />
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                        </form>
-                        </span>
-                    </div>
-                </li>
-            {% endfor %}
         </ul>
     </div>
 </div>
