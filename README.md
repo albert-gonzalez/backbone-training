@@ -43,7 +43,7 @@ Atrapalo backbonejs with requirejs training
 * Annotated source: http://backbonejs.org/docs/todos.html
 
 ###3. Activate backbone app on edit page
-* Uncomment line 33 on /src/Atrapalo/Infrastructure/Template/TodoList/Twig/edit.html.twig
+* Uncomment line 33 on .../Infrastructure/Template/TodoList/Twig/edit.html.twig
 * See the new behaviour of the edit page
 * See the backbone app files: /web/app/src/todoList/js/page/edit.js and /web/app/src/todoList/js/view/edit.view.js
 
