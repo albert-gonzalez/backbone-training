@@ -8,6 +8,7 @@ define([
         initialize: function () {
             this.collection = this.collection || new TodoCollection();
             this.listenTo(this.collection, 'add', this.addTodo);
+            this.collection.fetch();
         },
 
         addTodo: function (todo) {
