@@ -1,4 +1,5 @@
 define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
+    'use strict';
     var TodoView = Backbone.View.extend({
         tagName: 'li',
 
