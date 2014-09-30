@@ -37,10 +37,10 @@
                 <%- title %>
             <% } %>
             <span class="pull-right">
-            <a class="btn btn-success btn-sm app-editTodo" href="/todolist/<%- id %>">
+            <a class="btn btn-success btn-sm app-editTodo" href="/todolist/toModify">
                 Edit
             </a> |
-            <form class="form-inline inline-block app-deleteTodo" action="/todolist/<%- id %>" method="POST">
+            <form class="form-inline inline-block app-deleteTodo" action="/todolist/toModify" method="POST">
                 <input type="hidden" name="_method" value="delete" />
                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>
             </form>
