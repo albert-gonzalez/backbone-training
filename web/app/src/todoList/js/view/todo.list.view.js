@@ -4,12 +4,12 @@ define([
     'use strict';
     var TodoListView = Backbone.View.extend({
         el: '#todoList',
-        
+
         initialize: function () {
-            this.collection = new TodoCollection();
+            this.collection = this.collection || new TodoCollection();
             this.listenTo(this.collection, 'add', this.addTodo);
         },
-        
+
         addTodo: function (todo) {
             var todoView = new TodoView({model: todo});
             this.$el.append(todoView.render().el);
