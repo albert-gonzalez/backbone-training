@@ -26,7 +26,7 @@ Atrapalo backbonejs with requirejs training
 
 ###2. Synchronizing with the server
 * Modify todo.collection
-  * Define url property with 'api/todolist/
+  * Define url property with 'api/todolist/'
 * Modify todo.list.view
   * Fetch the collection from the server
 * Modify todo.create.view
