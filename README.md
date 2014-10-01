@@ -39,5 +39,6 @@ Atrapalo backbonejs with requirejs training
 * Modify index.html.twig
   * The item template no longer needs the form to delete todos. Change this form for a link (like the edit button).
 * Modify todo.view.js
-  * Add to the events hash the click event on the new delete link.
-  * Define a method that destroy the Todo. Similar to Create View, the view has to wait for the server response. When the server responses, the view will trigger a custom event.
+  * Define a events hash property with the click event on the new delete link.
+  * Define a method that destroy the Todo.
+  * The view has to listen the destroy event of the todo to remove the view when the todo is destroyed.
