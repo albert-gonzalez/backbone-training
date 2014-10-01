@@ -40,10 +40,9 @@
             <a class="btn btn-success btn-sm app-editTodo" href="/todolist/<%- id %>">
                 Edit
             </a> |
-            <form class="form-inline inline-block app-deleteTodo" action="/todolist/<%- id %>" method="POST">
-                <input type="hidden" name="_method" value="delete" />
-                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-            </form>
+            <a class="btn btn-danger btn-sm app-removeTodo" href="#">
+                Edit
+            </a>
             </span>
         </div>
     </script>
