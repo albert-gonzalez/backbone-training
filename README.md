@@ -11,13 +11,14 @@ Atrapalo backbonejs with requirejs training
   
 ##Exercises
 ###1. Creating Todos
-* HINT: Use Todo example of backbone doc as reference
+* HINT: Use Todo example of backbone doc as reference (http://backbonejs.org/docs/todos.html).
+* HINT: Backbone documentation is very useful: http://backbonejs.org
 * Define AMD Modules
   * Create /web/app/src/todoList/js/view/todo.create.view.js and define an AMD module inside with backbone and todo.model as dependencies
   * Modify index.view adding todo.create.view, todo.collection as dependencies
 * Create a Backbone.View inside the module of todo.create.view
   * Define the el property with the id that view has to control
-  * Define the events property to bind the form submit to a callback function
+  * Define the events property to bind the form submit to a callback function (http://backbonejs.org/#View-extend)
     * This callback has to create a new todo with the form fields. When the todo is created, the view has to trigger an event to inform other listening entities.
 * Modify index.view
   * Create a new intance of Todo Create View to control the form
@@ -40,5 +41,5 @@ Atrapalo backbonejs with requirejs training
   * The item template no longer needs the form to delete todos. Change this form for a link (like the edit button).
 * Modify todo.view.js
   * Define a events hash property with the click event on the new delete link.
-  * Define a method that destroy the Todo.
-  * The view has to listen the destroy event of the todo to remove the view when the todo is destroyed.
+  * Define a method that destroy the Todo. Backbone will remove the todo from the collection automatically (http://backbonejs.org/#Model-destroy)
+  * The view has to listen the destroy event of the todo to remove the view when the todo is destroyed. When a view is removed, the view stops listening the assigned events and remove the element from the DOM (http://backbonejs.org/#View-remove)
