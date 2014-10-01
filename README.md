@@ -34,3 +34,10 @@ Atrapalo backbonejs with requirejs training
   * Now the view has to wait the new todo to synchronize with the server (it could happen any error: bad request, server failure...). In other words, the view has to listen to once (and only once) the sync event. When this event is triggered, the view will trigger the todoCreated event.
 * Modify index.html.twig
   * The server returns a JSON with the id of the created Todo. Now you can modify the todo item template changing "toModify" string for the Todo id
+
+###3. Removing Todos
+* Modify index.html.twig
+  * The item template no longer needs the form to delete todos. Change this form for a link (like the edit button).
+* Modify todo.view.js
+  * Add to the events hash the click event on the new delete link.
+  * Define a method that destroy the Todo. Similar to Create View, the view has to wait for the server response. When the server responses, the view will trigger a custom event.
