@@ -3,7 +3,7 @@ define(['backbone'], function (Backbone) {
     var Todo = Backbone.Model.extend({
         defaults: function () {
             return {
-                id: '',
+                id: undefined,
                 title: "Todo",
                 description: "",
                 done: false,
