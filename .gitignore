@@ -1,3 +1,4 @@
 .idea
 vendor
 web/app/vendor
+node_modules
