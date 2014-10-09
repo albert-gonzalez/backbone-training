@@ -41,7 +41,7 @@ define([
                     this.view.collection.add(new Backbone.Model());
                 });
                 it('Should append a element to the view', function() {
-                    this.server.respond('[]');
+                    this.server.respond();
                     expect(this.view.$el.children().length).toBe(1);
                 });
             });
