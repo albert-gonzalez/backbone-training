@@ -6,14 +6,11 @@ define([
     describe('Todo List View', function() {
         beforeEach(function() {
             this.template = prepareDom();
-            var that = this;
-            this.xhr = sinon.useFakeXMLHttpRequest();
-            this.requests = [];
-            this.xhr.onCreate = function (req) { that.requests.push(req);};
+            this.server = sinon.fakeServer.create();
             this.collection = createCollectionFake(Backbone.Collection);
         });
         afterEach(function() {
-            this.xhr.restore();
+            this.server.restore();
             restoreDom();
         });
         describe('When initialize with a collection', function() {
@@ -37,13 +34,14 @@ define([
                 expect(this.view.collection instanceof TodoCollection).toBe(true);
             });
             it('Should call for data to the server', function () {
-                expect(this.requests.length).toBe(1);
+                expect(this.server.requests.length).toBe(1);
             });
             describe('Added a element to the collection', function() {
                 beforeEach(function() {
                     this.view.collection.add(new Backbone.Model());
                 });
                 it('Should append a element to the view', function() {
+                    this.server.respond('[]');
                     expect(this.view.$el.children().length).toBe(1);
                 });
             });
