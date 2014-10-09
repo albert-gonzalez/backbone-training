@@ -4,12 +4,12 @@ define([
     'use strict';
     var IndexView = Backbone.View.extend({
         initialize: function () {
-            var todoCreateView = new TodoCreateView(),
-                todoListView,
-                todoCollection = new TodoCollection();
+            var todoCreateView = new TodoCreateView();
 
-            todoCollection.listenTo(todoCreateView, 'todoCreated', todoCollection.add);
-            todoListView = new TodoListView({collection: todoCollection});
+            this.collection = new TodoCollection();
+
+            this.collection.listenTo(todoCreateView, 'todoCreated', this.collection.add);
+            new TodoListView({collection: this.collection});
         }
     });
     

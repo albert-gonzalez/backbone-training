@@ -3,10 +3,9 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
     var TodoView = Backbone.View.extend({
         tagName: 'li',
 
-        template: _.template($('#todo-template').html()),
-        
         initialize: function () {
             this.listenTo(this.model, 'destroy', this.remove);
+            this.template = _.template($('#todo-template').html());
         },
 
         events: {

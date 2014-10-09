@@ -25,10 +25,10 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
                         html(data.get('message')).show('fadein');
             });
 
-            this.listenTo(this.todo, 'error', function (data) {
+            this.listenTo(this.todo, 'error', function (data, response) {
                 this.$('#message').hide();
                 this.$('#message').removeClass('alert-success').addClass('alert-danger').
-                        html(data.get('message')).show('fadein');
+                        html(response.responseText).show('fadein');
             });
         },
 
