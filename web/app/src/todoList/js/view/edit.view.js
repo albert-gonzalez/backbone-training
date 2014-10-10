@@ -1,10 +1,17 @@
-define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
+define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
     'use strict';
-    var EditView = Backbone.View.extend({
+    return Marionette.ItemView.extend({
         el: "#editTodo",
 
+        template: false,
+
+        ui: {
+            idInput: 'form input[name=id]'
+        },
+
         initialize: function () {
-            this.todo = new Todo({id: this.$('form input[name=id]').val()});
+            this.render();
+            this.todo = new Todo({id: this.ui.idInput.val()});
             this.createMessageElement();
             this.addListeners();
         },
@@ -46,6 +53,4 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
             };
         }
     });
-
-    return EditView;
 });
