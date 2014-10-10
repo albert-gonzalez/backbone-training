@@ -1,10 +1,10 @@
-define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
+define(['marionette'], function (Marionette) {
     'use strict';
-    var TodoView = Backbone.View.extend({
+    return Marionette.ItemView.extend({
         tagName: 'li',
 
         initialize: function () {
-            this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, 'destroy', this.destroy);
             this.template = _.template($('#todo-template').html());
         },
 
@@ -12,17 +12,9 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
             'click .app-deleteTodo' : 'removeTodo'
         },
 
-        render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
-
-            return this;
-        },
-
         removeTodo: function (e) {
             e.preventDefault();
             this.model.destroy();
         }
     });
-
-    return TodoView;
 });
