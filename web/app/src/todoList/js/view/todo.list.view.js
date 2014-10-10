@@ -1,21 +1,16 @@
 define([
-    'backbone', 'app/collection/todo.collection', 'app/model/todo.model', 'app/view/todo.view'
-], function (Backbone, TodoCollection, Todo, TodoView) {
+    'marionette', 'app/collection/todo.collection', 'app/model/todo.model', 'app/view/todo.view'
+], function (Marionette, TodoCollection, Todo, TodoView) {
     'use strict';
-    var TodoListView = Backbone.View.extend({
+    return Marionette.CollectionView.extend({
         el: '#todoList',
+
+        childView: TodoView,
 
         initialize: function () {
             this.collection = this.collection || new TodoCollection();
-            this.listenTo(this.collection, 'add', this.addTodo);
             this.collection.fetch();
-        },
-
-        addTodo: function (todo) {
-            var todoView = new TodoView({model: todo});
-            this.$el.append(todoView.render().el);
+            this.listenTo(this.collection, 'add remove reset sort', this.render);
         }
     });
-
-    return TodoListView;
 });
