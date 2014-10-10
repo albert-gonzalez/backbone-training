@@ -15,28 +15,23 @@ define(['backbone', 'app/view/todo.create.view'], function(Backbone, TodoCreateV
             beforeEach(function() {
                 this.view = new TodoCreateView();
             });
-            describe('On render', function() {
+            describe('On sending form', function() {
                 beforeEach(function() {
-                    this.view.render();
+                    $('#createTodo form').submit();
                 });
-                describe('On sending form', function() {
-                    beforeEach(function() {
-                        $('#createTodo form').submit();
+                afterEach(function() {
+                    this.server.respond('{}');
+                });
+                it('Should send data to the server', function() {
+                    var requestData = JSON.parse(this.server.requests[0].requestBody);
+                    expect(requestData.title).toBe('myTitle');
+                    expect(requestData.description).toBe('myDescription');
+                });
+                it('Should trigger a event todoCreated', function(done) {
+                    this.view.on('todoCreated', function() {
+                        done();
                     });
-                    afterEach(function() {
-                        this.server.respond('{}');
-                    });
-                    it('Should send data to the server', function() {
-                        var requestData = JSON.parse(this.server.requests[0].requestBody);
-                        expect(requestData.title).toBe('myTitle');
-                        expect(requestData.description).toBe('myDescription');
-                    });
-                    it('Should trigger a event todoCreated', function(done) {
-                        this.view.on('todoCreated', function() {
-                            done();
-                        });
-                        this.server.respond('{}');
-                    });
+                    this.server.respond('{}');
                 });
             });
         });

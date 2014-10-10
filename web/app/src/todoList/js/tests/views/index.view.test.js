@@ -14,7 +14,10 @@ define(['backbone', 'app/view/index.view'], function(Backbone, IndexView) {
         describe('On Instantiate', function() {
             beforeEach(function(){
                 this.view = new IndexView();
-                this.server.respond('');
+                this.server.respond('[]');
+            });
+            it('The colection view should have no elements', function() {
+                expect(this.view.collection.size()).toBe(0);
             });
             describe('On create a todo with the form', function () {
                 beforeEach(function () {
