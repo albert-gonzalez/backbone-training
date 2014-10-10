@@ -1,6 +1,14 @@
-define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
+define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
     'use strict';
-    var TodoCreateView = Backbone.View.extend({
+    return Marionette.ItemView.extend({
+
+        template: false,
+
+        ui: {
+            titleInput: 'input[name=title]',
+            descriptionInput: 'input[name=description]'
+        },
+
         el: '#createTodo',
 
         events: {
@@ -9,14 +17,16 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
 
         initialize: function() {
             this.model = new Todo;
+            this.render();
         },
 
         createTodo: function (event) {
             event.preventDefault();
-            var title = this.$('input[name=title]').val(),
-                description = this.$('input[name=description]').val();
 
-            this.model.set({title: title, description: description});
+            this.model.set({
+                title: this.ui.titleInput.val(),
+                description: this.ui.descriptionInput.val()
+            });
             this.listenToOnce(this.model, 'sync', this.triggerEvent);
             this.model.save();
         },
@@ -25,8 +35,6 @@ define(['backbone', 'app/model/todo.model'], function (Backbone, Todo) {
             this.trigger('todoCreated', todo);
         }
     });
-
-    return TodoCreateView;
 });
 
 
