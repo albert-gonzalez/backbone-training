@@ -1,6 +1,10 @@
 require(['./config'], function () {
     'use strict';
-    require(['app/view/index.view'], function (IndexView) {
-        var indexView = new IndexView();
+    require(['marionette', 'app/view/index.view'], function (Marionette, IndexView) {
+        var app = new Marionette.Application();
+        app.addInitializer(function() {
+            new IndexView()
+        });
+        app.start();
     });
 });

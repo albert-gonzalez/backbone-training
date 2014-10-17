@@ -60,7 +60,7 @@ Atrapalo backbonejs with requirejs training
 ##Exercises
 ###1. Convert entry point in a Marionette Application
 * topics:
-** Aplication structure
+** Application structure
 ** Views as widgets
 ** Marionette Application
 ** Channel
