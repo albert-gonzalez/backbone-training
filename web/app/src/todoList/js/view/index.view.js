@@ -13,9 +13,8 @@ define([
             var todoCreateView = new TodoCreateView();
 
             this.createTodo.attachView(todoCreateView);
-            this.todoList.attachView(new TodoListView({collection: this.collection}));
-
             this.collection = new TodoCollection();
+            this.todoList.attachView(new TodoListView({collection: this.collection}));
             this.collection.listenTo(todoCreateView, 'todoCreated', this.collection.add);
         }
     });
