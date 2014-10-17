@@ -33,6 +33,7 @@ define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
 
         triggerEvent: function (todo) {
             this.trigger('todoCreated', todo);
+            this.model = new Todo();
         }
     });
 });
