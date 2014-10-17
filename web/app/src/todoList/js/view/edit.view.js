@@ -1,19 +1,31 @@
-define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
+define([
+    'marionette',
+    'app/model/todo.model',
+    'text!app/template/edit.view.html'
+], function (Marionette, Todo, editViewTemplate) {
     'use strict';
     return Marionette.ItemView.extend({
-        el: "#editTodo",
+        el: "#main-container",
 
-        template: false,
+        template: _.template(editViewTemplate),
 
         ui: {
             idInput: 'form input[name=id]'
         },
 
-        initialize: function () {
-            this.render();
-            this.todo = new Todo({id: this.ui.idInput.val()});
+        initialize: function (options) {
+            this.model = new Todo({id: options.id});
             this.createMessageElement();
             this.addListeners();
+            this.model.fetch();
+        },
+
+        templateHelpers: {
+            checked: function() {
+                return this.done ?
+                    'checked' :
+                    null;
+            }
         },
 
         events: {
@@ -26,13 +38,14 @@ define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
         },
 
         addListeners: function () {
-            this.listenTo(this.todo, 'sync', function (data) {
+            this.listenTo(this.model, 'sync', function (data) {
                 this.$('#message').hide();
                 this.$('#message').removeClass('alert-danger').addClass('alert-success').
                         html(data.get('message')).show('fadein');
+                this.render();
             });
 
-            this.listenTo(this.todo, 'error', function (data, response) {
+            this.listenTo(this.model, 'error', function (data, response) {
                 this.$('#message').hide();
                 this.$('#message').removeClass('alert-success').addClass('alert-danger').
                         html(response.responseText).show('fadein');
@@ -41,7 +54,7 @@ define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
 
         saveTodo: function (e) {
             e.preventDefault();
-            this.todo.save(this.serializeFormToJson());
+            this.model.save(this.serializeFormToJson());
         },
 
         serializeFormToJson: function () {

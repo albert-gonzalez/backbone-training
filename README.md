@@ -73,7 +73,7 @@ Atrapalo backbonejs with requirejs training
 ** template helpers
 * The file with html extension containing the template should exists
 * The container DOM element should be injected in the view
-* The logic should be in the view, use instead the templateHelpers
+* The logic shouldn't be in the template, use instead the templateHelpers
 * The view should require (or get injected) the template through the text filter
 ###3. Add Routing
 * Topics:
