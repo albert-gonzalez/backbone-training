@@ -1,6 +1,7 @@
 requirejs.config({
     baseUrl: '/app',
     paths: {
+        'text': 'src/todoList/js/text',
         'app': 'src/todoList/js',
         'backbone': 'vendor/backbone/backbone',
         'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
