@@ -10,6 +10,7 @@ define([
         initialize: function () {
             this.collection = this.collection || new TodoCollection();
             this.collection.fetch();
+            this.listenTo(this.collection, 'sync', this.render);
         }
     });
 });
