@@ -8,7 +8,10 @@ define([
         childView: TodoView,
 
         initialize: function () {
-            this.collection = this.collection || new TodoCollection();
+            this.listenTo(this.collection, 'sync', this.render());
+            this.listenTo(this.collection, 'add', function() {
+                console.log('added');
+            });
             this.collection.fetch();
         }
     });
