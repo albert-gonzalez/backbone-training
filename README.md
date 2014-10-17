@@ -59,20 +59,37 @@ Atrapalo backbonejs with requirejs training
 
 ##Exercises
 ###1. Convert entry point in a Marionette Application
+* topics:
+** Aplication structure
+** Views as widgets
+** Marionette Application
+** Channel
+** Regions
 * Create a Marionette.Application and start it at the entry point
 * The applications initialize should create the index.view
 ###2. Convert edit Twig template in a underscore template
+* Topics:
+** require's filters
+** template helpers
 * The file with html extension containing the template should exists
 * The container DOM element should be injected in the view
 * The logic should be in the view, use instead the templateHelpers
 * The view should require (or get injected) the template through the text filter
 ###3. Add Routing
+* Topics:
+** Router
+** Controllers
 * The application should create the AppRouter
 * The router should define the controllers for the router
 ** One controller for index view
 ** One controller for edit view
 * The router should bind the routes to the controllers
 ###4. Simplificate
+* Topics:
+** Reusable views
+** Data injection
+** Container and template injection
+** Many times, Marionette constructors are enough
 * Create the App directly from the entry point
 * The create view's model should be injected
 * The create view should not inform that the model is saved, its the work for the model
