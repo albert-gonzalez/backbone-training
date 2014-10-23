@@ -1,0 +1,20 @@
+<div id="message" class="alert">Messahe</div>
+<form class="form" action="/todolist/<%- id %>" method="POST">
+    <input type="hidden" name="id" value="<%- id %>" /><br>
+    <input type="hidden" name="_method" value="put" />
+    <div class="form-group">
+        <label class="control-label"> Title:</label>
+        <input class="form-control input-lg" type="text" name="title" value="<%- title %>"/><br>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Description:</label>
+        <input class="form-control input-lg" type="text" name="description" value="<%- description %>"/><br>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" type="checkbox" name="done" value="1" <% if (done) { %>checked<% } %>>
+            Done?
+        </label>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Edit</button>
+</form>

@@ -1,47 +1,42 @@
-define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
+define([
+    'underscore',
+    'marionette',
+    'app/model/todo.model',
+    'text!app/template/edit.view.html'
+], function (_, Marionette, Todo, template) {
     'use strict';
     return Marionette.ItemView.extend({
-        el: "#editTodo",
 
-        template: false,
+        template: _.template(template),
 
         ui: {
-            idInput: 'form input[name=id]'
-        },
-
-        initialize: function () {
-            this.render();
-            this.todo = new Todo({id: this.ui.idInput.val()});
-            this.createMessageElement();
-            this.addListeners();
+            idInput: 'form input[name=id]',
+            message: '#message'
         },
 
         events: {
             "submit form":  "saveTodo"
         },
 
-        createMessageElement: function () {
-            var messageElement = $('<div id="message" class="alert"></div>').hide();
-            this.$el.prepend(messageElement);
-        },
-
-        addListeners: function () {
-            this.listenTo(this.todo, 'sync', function (data) {
-                this.$('#message').hide();
-                this.$('#message').removeClass('alert-danger').addClass('alert-success').
-                        html(data.get('message')).show('fadein');
+        onRender: function () {
+            this.listenTo(this.model, 'sync', function (data) {
+                this.ui.message.hide();
+                this.ui.message.removeClass('alert-danger').addClass('alert-success').
+                    html(data.get('message')).show('fadein');
             });
 
-            this.listenTo(this.todo, 'error', function (data, response) {
-                this.$('#message').hide();
-                this.$('#message').removeClass('alert-success').addClass('alert-danger').
-                        html(response.responseText).show('fadein');
+            this.listenTo(this.model, 'error', function (data, response) {
+                this.ui.message.hide();
+                this.ui.message.removeClass('alert-success').addClass('alert-danger').
+                    html(response.responseText).show('fadein');
             });
+
+            this.ui.message.hide();
         },
 
         saveTodo: function (e) {
             e.preventDefault();
-            this.todo.save(this.serializeFormToJson());
+            this.model.save(this.serializeFormToJson());
         },
 
         serializeFormToJson: function () {
