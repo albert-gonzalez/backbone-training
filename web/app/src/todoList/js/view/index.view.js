@@ -12,10 +12,11 @@ define([
         initialize: function () {
             var todoCreateView = new TodoCreateView();
 
+            this.collection = new TodoCollection();
+
             this.createTodo.attachView(todoCreateView);
             this.todoList.attachView(new TodoListView({collection: this.collection}));
 
-            this.collection = new TodoCollection();
             this.collection.listenTo(todoCreateView, 'todoCreated', this.collection.add);
         }
     });

@@ -9,8 +9,8 @@ define([
 
         initialize: function () {
             this.collection = this.collection || new TodoCollection();
+            this.listenTo(this.collection, 'sync', this.render);
             this.collection.fetch();
-            this.listenTo(this.collection, 'add remove reset sort', this.render);
         }
     });
 });

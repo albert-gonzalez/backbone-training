@@ -20,8 +20,21 @@ define([
                     el: null
                 });
             });
-            it('should have the passed collection', function() {
-                expect(this.view.collection).toBe(this.collection);
+            describe('Rendered', function() {
+                beforeEach(function() {
+                    this.view.render();
+                });
+                it('should have the passed collection', function() {
+                    expect(this.view.collection).toBe(this.collection);
+                });
+                describe('Added a element to the collection', function() {
+                    beforeEach(function() {
+                        this.collection.add(new Backbone.Model());
+                    });
+                    it('Should append a element to the view', function() {
+                        expect(this.view.$el.children().length).toBe(1);
+                    });
+                });
             });
         });
         describe('When initialize without collection', function() {
@@ -29,20 +42,28 @@ define([
                 this.view = new TodoListView({
                     el: null
                 });
+                this.collection = this.view.collection;
             });
             it('Should have a TodoCollection as collection', function() {
-                expect(this.view.collection instanceof TodoCollection).toBe(true);
+                expect(this.collection instanceof TodoCollection).toBe(true);
             });
             it('Should call for data to the server', function () {
                 expect(this.server.requests.length).toBe(1);
             });
-            describe('Added a element to the collection', function() {
-                beforeEach(function() {
-                    this.view.collection.add(new Backbone.Model());
+            describe('Rendered', function() {
+                beforeEach(function () {
+                    this.view.render();
                 });
-                it('Should append a element to the view', function() {
-                    this.server.respond();
-                    expect(this.view.$el.children().length).toBe(1);
+                describe('Added a element to the collection', function() {
+                    beforeEach(function() {
+                        this.collection.on('add', function() {
+                        });
+                        this.collection.add(new Backbone.Model());
+                    });
+                    it('Should append a element to the view', function() {
+                        this.server.respond();
+                        expect(this.view.$el.children().length).toBe(1);
+                    });
                 });
             });
         });
@@ -54,9 +75,8 @@ define([
     }
 
     function prepareDom() {
-        var template = document.createElement('SCRIPT');
+        var template = document.createElement('template');
         template.setAttribute('id', 'todo-template');
-        template.setAttribute('type', 'template');
         document.body.appendChild(template);
         return template;
     }
