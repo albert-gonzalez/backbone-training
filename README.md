@@ -87,11 +87,3 @@ Atrapalo backbonejs with requirejs training
 ** Data injection
 ** Container and template injection
 ** Many times, Marionette constructors are enough
-* Create the App directly from the entry point
-* The create view's model should be injected
-* The create view should not inform that the model is saved, its the work for the model
-* The create view should be rendered externally
-* The create views and edit views template could be the same
-* The create view and the edit view could be the same
-* The collection should be injected at the collection view
-* As the collection view doesn't have special logic, it isn't nedded to extend the Backbone.Collection 

@@ -1,15 +1,17 @@
-define(['marionette', 'app/model/todo.model'], function (Marionette, Todo) {
+define([
+    'marionette',
+    'app/model/todo.model',
+    'text!app/template/todo.create.view.html'
+], function (Marionette, Todo, template) {
     'use strict';
     return Marionette.ItemView.extend({
 
-        template: false,
+        template: _.template(template),
 
         ui: {
             titleInput: 'input[name=title]',
             descriptionInput: 'input[name=description]'
         },
-
-        el: '#createTodo',
 
         events: {
             'submit form': 'createTodo'

@@ -20,9 +20,8 @@ define([
 
         onRender: function () {
             this.listenTo(this.model, 'sync', function (data) {
-                this.ui.message.hide();
-                this.ui.message.removeClass('alert-danger').addClass('alert-success').
-                    html(data.get('message')).show('fadein');
+                console.log('aa');
+                this.trigger('todo:saved')
             });
 
             this.listenTo(this.model, 'error', function (data, response) {

@@ -1,49 +1,9 @@
 {% extends 'Common/Twig/base.html.twig' %}
 {% block content %}
-{% include 'Common/Twig/flash_message.html.twig' with
-{'code': code | default(null), 'message': message | default(null)}%}
-<div class="panel panel-default">
-    <div class="panel-heading"><h4>Add Todo</h4></div>
-    <div class="panel-body" id="createTodo">
-        <form class="form-inline text-center" action="/todolist" method="POST">
-            <div class="form-group">
-                <input class="form-control input-lg" type="text" name="title" placeholder="Title"/>
-            </div>
-            <div class="form-group">
-                <input class="form-control input-lg" type="text" name="description" placeholder="Description"/>
-            </div>
-            <button class="btn btn-primary btn-lg" type="submit">Create</button>
-        </form>
-    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h4>Todo List</h4></div>
-    <div class="panel-body">
-        <ul id="todoList">
-        </ul>
-    </div>
-</div>
+    <div id="main-container"></div>
 {% endblock %}
 {% block javascript %}
     {{ parent() }}
-    <script data-main="/app/src/todoList/js/page/index.js" src="/app/vendor/requirejs/require.js"></script>
 
-    {# This template will be used in first exercise#}
-    <script type="text/template" id="todo-template">
-        <div class="lead" title="<%- description %> | Created at <%- creationDate %>">
-            <% if (done == 1) { %>
-            <del><%- title %></del>
-            <% } else { %>
-                <%- title %>
-            <% } %>
-            <span class="pull-right">
-            <a class="btn btn-success btn-sm app-editTodo" href="/todolist/<%- id %>">
-                Edit
-            </a> |
-            <a class="btn btn-danger btn-sm app-deleteTodo" href="#">
-                Delete
-            </a>
-            </span>
-        </div>
-    </script>
+    <script data-main="/app/src/todoList/js/page/index.js" src="/app/vendor/requirejs/require.js"></script>
 {% endblock %}

@@ -1,16 +1,12 @@
 define([
-    'marionette', 'app/collection/todo.collection', 'app/model/todo.model', 'app/view/todo.view'
-], function (Marionette, TodoCollection, Todo, TodoView) {
+    'marionette',
+    'app/collection/todo.collection',
+    'app/view/todo.view'
+], function (Marionette, TodoCollection, TodoView) {
     'use strict';
     return Marionette.CollectionView.extend({
-        el: '#todoList',
 
-        childView: TodoView,
+        childView: TodoView
 
-        initialize: function () {
-            this.collection = this.collection || new TodoCollection();
-            this.listenTo(this.collection, 'sync', this.render);
-            this.collection.fetch();
-        }
     });
 });

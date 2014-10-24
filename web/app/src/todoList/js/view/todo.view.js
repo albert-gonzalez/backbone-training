@@ -1,20 +1,13 @@
-define(['marionette'], function (Marionette) {
+define([
+    'marionette',
+    'text!app/template/todo.view.html'
+], function (Marionette, template) {
     'use strict';
     return Marionette.ItemView.extend({
-        tagName: 'li',
 
-        initialize: function () {
-            this.listenTo(this.model, 'destroy', this.destroy);
-            this.template = _.template($('#todo-template').html());
-        },
+        template: _.template(template),
 
-        events: {
-            'click .app-deleteTodo' : 'removeTodo'
-        },
+        tagName: 'li'
 
-        removeTodo: function (e) {
-            e.preventDefault();
-            this.model.destroy();
-        }
     });
 });
